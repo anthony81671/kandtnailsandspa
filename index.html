@@ -63,10 +63,16 @@
         
         /* Parallax Background Class */
         .parallax {
-            background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+        }
+        
+        /* Enable parallax only on larger screens (mobile has issues with fixed backgrounds) */
+        @media (min-width: 768px) {
+            .parallax {
+                background-attachment: fixed;
+            }
         }
 
         /* --- Custom Professional Glow Button --- */
@@ -368,7 +374,7 @@
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
 
-        <div class="relative z-10 container mx-auto px-4" data-aos="fade-up" data-aos-duration="1500">
+        <div class="relative z-10 container mx-auto px-6 md:px-4" data-aos="fade-up" data-aos-duration="1500">
             <h3 class="text-white font-bold tracking-[0.2em] uppercase text-sm md:text-base mb-4">Welcome to Your Sanctuary</h3>
             <h1 class="text-4xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight">
                 Beauty, Relaxation<br/> & Elegance
