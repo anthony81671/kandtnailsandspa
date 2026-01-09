@@ -1239,9 +1239,17 @@
           // Remove loading message
           removeMessage(loadingId);
 
-          // Display AI response (checks for 'response', 'reply', or 'result')
+          // Display AI response
           const aiText = data.response || data.reply || data.result || "I received your message!";
           addMessage(aiText, 'ai');
+
+          // Check for nail shape keywords to show the guide
+          const shapeKeywords = ['nail shape', 'nail style', 'shape guide', 'different shapes', 'almond', 'stiletto', 'coffin', 'square'];
+          if (shapeKeywords.some(keyword => aiText.toLowerCase().includes(keyword) || message.toLowerCase().includes(keyword))) {
+            setTimeout(() => {
+              addMessage("Here is our nail shape guide to help you choose!", 'ai', false, 'nailshape.png');
+            }, 500);
+          }
 
         } catch (error) {
           console.error(error);
@@ -1250,16 +1258,17 @@
         }
       }
 
-      function addMessage(text, sender, isLoading = false) {
+      function addMessage(text, sender, isLoading = false, imgUrl = null) {
         const container = document.getElementById('chat-messages');
         const div = document.createElement('div');
-        div.style.marginBottom = '0';
+        div.style.marginBottom = '8px';
         div.style.padding = '10px 14px';
         div.style.borderRadius = '12px';
         div.style.maxWidth = '85%';
         div.style.fontSize = '14px';
         div.style.lineHeight = '1.5';
         div.style.wordWrap = 'break-word';
+        div.style.position = 'relative';
         
         if (sender === 'user') {
           div.style.alignSelf = 'flex-end';
@@ -1288,6 +1297,17 @@
           div.dataset.interval = loadingInterval;
         } else {
           div.textContent = text;
+          if (imgUrl) {
+            const img = document.createElement('img');
+            img.src = imgUrl;
+            img.style.marginTop = '8px';
+            img.style.borderRadius = '8px';
+            img.style.width = '100%';
+            img.style.display = 'block';
+            img.style.cursor = 'pointer';
+            img.onclick = () => window.open(imgUrl, '_blank');
+            div.appendChild(img);
+          }
         }
         
         container.appendChild(div);
