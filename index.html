@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K&T Nails and Spa | Premium Nail Salon in Cypress, CA</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Experience luxury nail care at K&T Nails and Spa in Cypress, CA. Expert manicures, pedicures, gel nails, nail art, and waxing services. Walk-ins welcome! Call 714-820-6172">
+    <meta name="keywords" content="nail salon Cypress, manicure Cypress CA, pedicure, gel nails, nail art, spa services, waxing, K&T Nails, Katella Ave">
+    <meta name="author" content="K&T Nails and Spa">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="K&T Nails and Spa | Premium Nail Salon in Cypress, CA">
+    <meta property="og:description" content="Experience luxury nail care at K&T Nails and Spa. Expert manicures, pedicures, gel nails, and spa services in Cypress, CA. Walk-ins welcome!">
+    <meta property="og:image" content="https://www.kntnailsandspa.com/hero.png">
+    <meta property="og:url" content="https://www.kntnailsandspa.com">
+    <meta property="og:type" content="business.business">
+    <meta property="og:site_name" content="K&T Nails and Spa">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="K&T Nails and Spa | Premium Nail Salon in Cypress, CA">
+    <meta name="twitter:description" content="Experience luxury nail care at K&T Nails and Spa. Expert manicures, pedicures, gel nails, and spa services in Cypress, CA.">
+    <meta name="twitter:image" content="https://www.kntnailsandspa.com/hero.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.kntnailsandspa.com">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="KNTLogonb.png">
+    <link rel="apple-touch-icon" href="KNTLogonb.png">
+
+    <!-- Preconnect to external resources for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Google Fonts: Playfair Display (Serif) & Lato (Sans) -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+        
+        body { 
+            font-family: 'Lato', sans-serif; 
+            transition: background-color 0.5s ease; /* Smooth background transitions */
+        }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Parallax Background Class */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* --- Custom Professional Glow Button --- */
+        .glow-button {
+            transition: all 0.3s ease-out;
+            box-shadow: 0 4px 6px rgba(236, 72, 153, 0.4); /* Pink shadow */
+            border: 1px solid transparent;
+        }
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(236, 72, 153, 0.6), 0 0 10px rgba(236, 72, 153, 0.8); /* Stronger glow */
+            background-color: #db2777; /* Slightly darker pink on hover */
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ec4899; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #db2777; }
+
+        /* Custom styling for the native details/summary element */
+        .accordion-item {
+            border: 1px solid #fce7f3;
+            border-radius: 0.75rem; 
+            margin-bottom: 1rem;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+            overflow: hidden;
+        }
+        .accordion-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem; 
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            cursor: pointer;
+            color: #ec4899; /* brand-pink */
+            transition: background-color 0.2s;
+            font-family: 'Playfair Display', serif; 
+            /* Hide the default drop-down arrow */
+            list-style: none; 
+        }
+        .accordion-summary:hover {
+            background-color: #fcf6f8;
+        }
+        .accordion-summary::-webkit-details-marker { display: none; }
+        .accordion-content {
+            padding: 0 1.5rem 1.5rem 1.5rem; 
+        }
+        
+        /* Inner package styling adjustments */
+        .package-item {
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .package-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            list-style: none; 
+        }
+        .package-summary::-webkit-details-marker { display: none; }
+        .package-content {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: -1px; 
+        }
+        
+        /* List bullet styling */
+        .package-content details ul, .package-content details ol {
+            padding-left: 0;
+            list-style: none;
+        }
+        .package-content details ul li:before {
+            content: '•';
+            display: inline-block;
+            margin-right: 0.5em;
+            color: #ec4899; 
+        }
+        .package-content p.font-semibold {
+            padding-left: 0;
+        }
+        
+        /* Subheading Consistency Class */
+        .section-subheading {
+            color: #ec4899; /* text-brand-pink */
+            font-weight: 700; /* font-bold */
+            text-transform: uppercase;
+            letter-spacing: 0.1em; /* tracking-[0.1em] */
+            font-size: 1.125rem; /* text-lg */
+            display: block;
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+
+        /* AI Chat Box Styling */
+        #ai-chat-response {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        #ai-chat-response.open {
+            max-height: 500px; /* Arbitrary large height */
+        }
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ec4899;
+            border-radius: 50%;
+            display: inline-block;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#ec4899', 
+                            dark: '#1f2937',
+                            gold: '#d4af37', 
+                            teal: '#14b8a6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Analytics (Replace G-XXXXXXXXXX with your actual GA4 Measurement ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+    </script>
+
+    <!-- Import Firebase (needed for auth if expanding features later, though this example uses direct API for simplicity) -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+        import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+        // Initialize Firebase (using empty config for now as we just need the environment)
+        const app = initializeApp({});
+    </script>
+</head>
+<body class="text-gray-700 antialiased selection:bg-brand-pink selection:text-white">
+
+    <!-- Schema.org Structured Data for Local Business -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "@id": "https://www.kntnailsandspa.com",
+        "name": "K&T Nails and Spa",
+        "image": "https://www.kntnailsandspa.com/KNTLogonb.png",
+        "url": "https://www.kntnailsandspa.com",
+        "telephone": "+17148206172",
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "5353 Katella Ave., Unit A",
+            "addressLocality": "Cypress",
+            "addressRegion": "CA",
+            "postalCode": "90720",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "33.8175",
+            "longitude": "-118.0371"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "19:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "09:00",
+                "closes": "18:00"
+            }
+        ],
+        "sameAs": [
+            "https://www.facebook.com/kandtnailsandspa",
+            "https://www.instagram.com/kntnailsandspa",
+            "https://yelp.to/QXoz5-TAWd"
+        ],
+        "founder": {
+            "@type": "Person",
+            "name": "K&T Nails and Spa"
+        },
+        "foundingDate": "2022-01",
+        "description": "Experience luxury nail care at K&T Nails and Spa in Cypress, CA. Expert manicures, pedicures, gel nails, nail art, and waxing services. Walk-ins welcome!",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Nail Salon Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Manicure Services",
+                        "description": "Premium manicure packages including gel, acrylic, and spa treatments"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Pedicure Services",
+                        "description": "Luxury pedicure packages with massage and spa treatments"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Nail Enhancement",
+                        "description": "Acrylic, gel, dipping powder, and Gel-X nail enhancements"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Waxing Services",
+                        "description": "Professional facial and body waxing services"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+
+    <!-- Page Loading Spinner -->
+    <div id="page-loader" class="fixed inset-0 bg-white z-[200] flex items-center justify-center transition-opacity duration-500">
+        <div class="text-center">
+            <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-brand-pink border-t-transparent mb-4"></div>
+            <p class="text-brand-pink font-serif text-xl font-bold">K&T Nails and Spa</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 bg-pink-50 shadow-md">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo Area with Image -->
+            <div class="flex flex-col items-start cursor-pointer" onclick="window.scrollTo(0,0)" role="button" tabindex="0" aria-label="Scroll to top" onkeypress="if(event.key==='Enter')window.scrollTo(0,0)">
+                <img src="KNTLogonb.png" alt="K&T Nails and Spa Logo" class="h-24 w-auto hover:scale-105 transition-transform duration-300" width="150" height="96" loading="eager"> 
+                <!-- Tagline -->
+                <p class="text-sm text-brand-pink font-bold mt-2 tracking-widest uppercase">Your Nails, Our Passion, Always Unforgettable</p>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
+                <a href="#home" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to home section">Home</a>
+                <a href="#ai-consultant" class="text-xs font-bold uppercase tracking-widest text-brand-pink hover:text-gray-800 transition-colors flex items-center gap-1" aria-label="Go to AI style consultant"><i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i> AI Match</a>
+                <a href="#about" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to about us section">About</a>
+                <a href="#faq" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to FAQ section">FAQ</a>
+                <a href="#testimonials" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to testimonials section">Reviews</a>
+                <a href="#services" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to services section">Services</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-gray-800" onclick="toggleMenu()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+                <i data-lucide="menu" class="w-8 h-8" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <nav id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-t border-gray-200 py-4 px-6 flex flex-col space-y-4 shadow-xl" role="navigation" aria-label="Mobile navigation">
+            <a href="#home" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to home section">HOME</a>
+            <a href="#ai-consultant" class="text-brand-pink font-medium py-2 border-b border-gray-200 flex items-center gap-2" onclick="toggleMenu()" aria-label="Go to AI style consultant"><i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i> AI STYLE MATCH</a>
+            <a href="#about" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to about us section">ABOUT US</a>
+            <a href="#faq" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to FAQ section">FAQ</a>
+            <a href="#testimonials" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to testimonials section">REVIEWS</a>
+            <a href="#services" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to services section">SERVICES</a>
+        </nav>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+        <div class="absolute inset-0 z-0 parallax" style="background-image: url('hero.png');">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-4" data-aos="fade-up" data-aos-duration="1500">
+            <h3 class="text-white font-bold tracking-[0.2em] uppercase text-sm md:text-base mb-4">Welcome to Your Sanctuary</h3>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight">
+                Beauty, Relaxation <br/> & Elegance
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light">
+                Experience the finest nail care in Cypress, CA. Where luxury meets style and comfort.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="openContactModal()" class="glow-button px-8 py-4 bg-brand-pink text-white font-bold tracking-widest uppercase rounded-lg">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI Consultant Section (NEW) -->
+    <section id="ai-consultant" class="py-20 bg-pink-50 relative overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-pink-100">
+                <div class="p-8 md:p-12">
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center justify-center p-3 bg-pink-100 rounded-full mb-4">
+                            <i data-lucide="sparkles" class="w-8 h-8 text-brand-pink"></i>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 mb-2">Find Your Perfect Style</h2>
+                        <p class="text-gray-600">Not sure what to get? Tell our AI Stylist about your occasion or mood, and we'll suggest the perfect service.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <textarea id="ai-input" rows="3" class="w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-brand-pink focus:border-transparent outline-none resize-none bg-gray-50 text-gray-700 placeholder-gray-400 transition-all" placeholder="e.g., I'm going to a beach wedding this weekend and wearing a sage green dress. What nail style should I get?"></textarea>
+                            <button id="ai-submit-btn" class="absolute bottom-3 right-3 bg-brand-pink text-white p-2 rounded-lg hover:bg-pink-600 transition-colors shadow-sm group">
+                                <i data-lucide="send" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                            </button>
+                        </div>
+
+                        <!-- Response Area -->
+                        <div id="ai-chat-response" class="bg-gradient-to-br from-pink-50 to-white rounded-xl border border-pink-100">
+                            <div class="p-6">
+                                <div id="ai-loading" class="hidden mb-2">
+                                    <span class="text-sm text-brand-pink font-semibold mr-2">Stylist is thinking</span>
+                                    <div class="typing-dot"></div>
+                                    <div class="typing-dot"></div>
+                                    <div class="typing-dot"></div>
+                                </div>
+                                <div id="ai-result" class="prose prose-pink text-gray-700 hidden">
+                                    <!-- AI Content goes here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="section-subheading">OUR ARTISTRY</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Stunning Nail Designs</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+                    See our latest nail art and spa treatments. Every design is a masterpiece crafted with care and precision.
+                </p>
+                <a href="https://www.instagram.com/kntnailsandspa" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:shadow-lg transition-all">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                    Follow @kntnailsandspa
+                </a>
+            </div>
+
+            <div class="max-w-6xl mx-auto" data-aos="fade-up">
+                <script src="https://elfsightcdn.com/platform.js" async></script>
+                <div class="elfsight-app-03287cc4-2871-4410-b46a-f890f689fdd1" data-elfsight-app-lazy></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+                <span class="section-subheading">OUR STORY</span>
+                
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-8">Welcome to K&T Nails & Spa</h2>
+                
+                <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                    Since opening our doors in January 2022, K&T Nails and Spa has become Cypress's premier destination for luxury nail care and relaxation. Conveniently located next to Costco at 5353 Katella Ave., we've built a reputation for exceptional service, impeccable hygiene standards, and creating a welcoming atmosphere where every client feels like family.
+                </p>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Our experienced team of nail technicians combines artistic skill with the latest techniques to deliver stunning results. We pride ourselves on using only premium products and maintaining the highest sanitation standards. Whether you're preparing for a special occasion or simply treating yourself to some well-deserved pampering, we're here to make you look and feel your absolute best.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="section-subheading">FREQUENTLY ASKED QUESTIONS</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Your Questions Answered</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Everything you need to know about our services, appointments, and salon policies.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4">
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="0">
+                    <summary class="accordion-summary">
+                        Do I need an appointment?
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-gray-700 leading-relaxed">Walk-ins are always welcome! However, we recommend calling ahead at <a href="tel:7148206172" class="text-brand-pink hover:underline">714-820-6172</a> to ensure availability, especially during weekends and peak hours.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                    <summary class="accordion-summary">
+                        What are your safety and sanitation practices?
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-gray-700 leading-relaxed mb-3">Your safety is our top priority. We follow strict sanitation protocols including:</p>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>All tools are sterilized using hospital-grade disinfectants</li>
+                            <li>Single-use files and buffers for each client</li>
+                            <li>Pedicure tubs are thoroughly cleaned and disinfected between clients</li>
+                            <li>Licensed technicians trained in proper hygiene practices</li>
+                            <li>Clean linens and towels for every service</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                    <summary class="accordion-summary">
+                        How long do gel nails last?
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-gray-700 leading-relaxed">Gel manicures typically last 2-3 weeks with proper care, while gel pedicures can last 3-4 weeks. The longevity depends on nail growth rate and daily activities. We recommend returning for maintenance every 2-3 weeks for optimal results.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                    <summary class="accordion-summary">
+                        What's the difference between acrylic and dipping powder?
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-gray-700 leading-relaxed mb-3">Both create durable, long-lasting nails, but they differ in application:</p>
+                        <p class="text-gray-700 mb-2"><strong class="text-brand-pink">Acrylic:</strong> Mixed liquid and powder applied with a brush. Great for length, very durable, and customizable.</p>
+                        <p class="text-gray-700"><strong class="text-brand-pink">Dipping Powder:</strong> Nails are dipped into colored powder. Odorless, lighter feel, and typically lasts 3-4 weeks. Many find it gentler on natural nails.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="400">
+                    <summary class="accordion-summary">
+                        Do you offer services for men?
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-gray-700 leading-relaxed">Absolutely! We offer manicures, pedicures, and grooming services for everyone. Many of our male clients enjoy our spa pedicure packages for relaxation and foot care.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="500">
+                    <summary class="accordion-summary">
+                        What payment methods do you accept?
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-gray-700 leading-relaxed">We accept cash, all major credit cards (Visa, MasterCard, American Express, Discover), and digital payment methods. Gratuity can be added to card payments or given in cash.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="600">
+                    <summary class="accordion-summary">
+                        Can I bring my own nail polish?
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-gray-700 leading-relaxed">Yes! While we have an extensive collection of colors and brands, you're welcome to bring your own polish. Please note that we cannot guarantee the same longevity with outside products.</p>
+                    </div>
+                </details>
+
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="700">
+                    <summary class="accordion-summary">
+                        What should I do to prepare for my appointment?
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-gray-700 leading-relaxed mb-3">To get the most from your service:</p>
+                        <ul class="text-gray-700 space-y-2">
+                            <li>Remove any existing polish before arriving (optional - we can do this for you)</li>
+                            <li>Avoid shaving legs 24 hours before a pedicure to prevent irritation</li>
+                            <li>Arrive a few minutes early to relax and choose your colors</li>
+                            <li>Communicate any allergies or sensitivities to your technician</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-gradient-to-br from-pink-50 to-purple-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="section-subheading">TESTIMONIALS</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">What Our Clients Say</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Don't just take our word for it - hear from our valued clients about their experiences.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 border border-pink-100" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex mb-4">
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">"Best nail salon in Cypress! The staff is incredibly friendly and professional. My gel manicure lasted over 3 weeks without chipping. The salon is always clean and the atmosphere is so relaxing."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-brand-pink rounded-full flex items-center justify-center text-white font-bold text-xl">S</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-800">Sarah M.</p>
+                            <p class="text-sm text-gray-500">Regular Client</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 border border-pink-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex mb-4">
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">"I've been coming here since they opened and I've never been disappointed! The Rejuvenate Package is absolutely heavenly - the massage and spa treatments are worth every penny. Highly recommend!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold text-xl">J</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-800">Jennifer L.</p>
+                            <p class="text-sm text-gray-500">Spa Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 border border-pink-100" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex mb-4">
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic leading-relaxed">"Amazing nail art! I showed them a Pinterest inspiration and they recreated it perfectly. The attention to detail is incredible. This is my go-to salon for all special occasions!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">M</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-800">Maria R.</p>
+                            <p class="text-sm text-gray-500">Nail Art Lover</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="https://yelp.to/QXoz5-TAWd" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-pink text-white font-bold rounded-full hover:shadow-lg transition-all glow-button">
+                    Leave us a review
+                    <i data-lucide="external-link" class="w-5 h-5" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before & After Gallery Section -->
+    <section id="gallery" class="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="section-subheading">TRANSFORMATIONS</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Before & After Gallery</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    See the stunning transformations we create every day. From nail repairs to complete makeovers.
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Gallery Item 1 - Placeholder -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg bg-white" data-aos="fade-up" data-aos-delay="0">
+                    <div class="aspect-square bg-gradient-to-br from-pink-100 to-purple-100 flex items-center justify-center">
+                        <div class="text-center p-8">
+                            <i data-lucide="image" class="w-16 h-16 mx-auto mb-4 text-brand-pink" aria-hidden="true"></i>
+                            <p class="text-gray-600 font-semibold">Gel-X Full Set</p>
+                            <p class="text-sm text-gray-500 mt-2">Before & After</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white">
+                        <h4 class="font-serif font-bold text-lg text-gray-800">Gel-X Extension</h4>
+                        <p class="text-sm text-gray-600">Natural nails to stunning length</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 - Placeholder -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg bg-white" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-square bg-gradient-to-br from-teal-100 to-blue-100 flex items-center justify-center">
+                        <div class="text-center p-8">
+                            <i data-lucide="image" class="w-16 h-16 mx-auto mb-4 text-brand-teal" aria-hidden="true"></i>
+                            <p class="text-gray-600 font-semibold">Spa Pedicure</p>
+                            <p class="text-sm text-gray-500 mt-2">Before & After</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white">
+                        <h4 class="font-serif font-bold text-lg text-gray-800">Rejuvenate Pedicure</h4>
+                        <p class="text-sm text-gray-600">Complete foot transformation</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 - Placeholder -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg bg-white" data-aos="fade-up" data-aos-delay="200">
+                    <div class="aspect-square bg-gradient-to-br from-yellow-100 to-orange-100 flex items-center justify-center">
+                        <div class="text-center p-8">
+                            <i data-lucide="image" class="w-16 h-16 mx-auto mb-4 text-brand-gold" aria-hidden="true"></i>
+                            <p class="text-gray-600 font-semibold">Nail Art Design</p>
+                            <p class="text-sm text-gray-500 mt-2">Before & After</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white">
+                        <h4 class="font-serif font-bold text-lg text-gray-800">Custom Nail Art</h4>
+                        <p class="text-sm text-gray-600">Simple to spectacular design</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 - Placeholder -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg bg-white" data-aos="fade-up" data-aos-delay="300">
+                    <div class="aspect-square bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
+                        <div class="text-center p-8">
+                            <i data-lucide="image" class="w-16 h-16 mx-auto mb-4 text-purple-600" aria-hidden="true"></i>
+                            <p class="text-gray-600 font-semibold">Acrylic Refill</p>
+                            <p class="text-sm text-gray-500 mt-2">Before & After</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white">
+                        <h4 class="font-serif font-bold text-lg text-gray-800">Acrylic Maintenance</h4>
+                        <p class="text-sm text-gray-600">Grown out to fresh and polished</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 5 - Placeholder -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg bg-white" data-aos="fade-up" data-aos-delay="400">
+                    <div class="aspect-square bg-gradient-to-br from-green-100 to-teal-100 flex items-center justify-center">
+                        <div class="text-center p-8">
+                            <i data-lucide="image" class="w-16 h-16 mx-auto mb-4 text-green-600" aria-hidden="true"></i>
+                            <p class="text-gray-600 font-semibold">Dip Powder</p>
+                            <p class="text-sm text-gray-500 mt-2">Before & After</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white">
+                        <h4 class="font-serif font-bold text-lg text-gray-800">Dip Powder Makeover</h4>
+                        <p class="text-sm text-gray-600">Damaged to healthy nails</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 - Placeholder -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg bg-white" data-aos="fade-up" data-aos-delay="500">
+                    <div class="aspect-square bg-gradient-to-br from-rose-100 to-red-100 flex items-center justify-center">
+                        <div class="text-center p-8">
+                            <i data-lucide="image" class="w-16 h-16 mx-auto mb-4 text-rose-600" aria-hidden="true"></i>
+                            <p class="text-gray-600 font-semibold">French Manicure</p>
+                            <p class="text-sm text-gray-500 mt-2">Before & After</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white">
+                        <h4 class="font-serif font-bold text-lg text-gray-800">Classic French Tips</h4>
+                        <p class="text-sm text-gray-600">Timeless elegance achieved</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12" data-aos="fade-up">
+                <p class="text-gray-600 mb-4">Want to add your own before & after photos?</p>
+                <p class="text-sm text-gray-500">Replace the placeholder images above with your actual client photos (with permission)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="section-subheading">OUR SERVICES</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Spa Packages & Services</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Discover our comprehensive menu of premium nail care services designed for ultimate relaxation and beauty. Please call us for current pricing.
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                
+                <div class="text-center mb-8 p-6 bg-black/50 text-white rounded-lg shadow-lg" data-aos="fade-up">
+                    <i data-lucide="phone" class="w-8 h-8 mx-auto mb-3"></i>
+                    <p class="text-xl font-bold mb-2">Call for Pricing and Appointments</p>
+                    <a href="tel:7148206172" class="text-2xl font-bold hover:underline">714-820-6172</a>
+                    <p class="text-sm mt-2 opacity-90">We'll help you choose the perfect treatment</p>
+                </div>
+
+                <!-- 1. SPA PACKAGES DROPDOWN (Outer) -->
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="0">
+                    <summary class="accordion-summary">
+                        Spa Packages
+                    </summary>
+                    <div class="accordion-content">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            
+                            <!-- ** INNER DROPDOWN: Refresh Package ** -->
+                            <details class="package-item bg-pink-50 shadow-md border border-pink-200">
+                                <summary class="package-summary hover:bg-pink-100">
+                                    <h4 class="text-2xl font-serif font-bold text-brand-pink">Refresh Package</h4>
+                                </summary>
+                                <div class="package-content">
+                                    <p class="text-gray-600 mb-4 italic">Perfect for a quick refresh and polish</p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div>
+                                            <p class="font-semibold text-lg border-b border-brand-pink/50 mb-2">Manicure</p>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li>Nail Trimming, Shaping and Cuticle Care</li>
+                                                <li>2-Minute Massage</li>
+                                                <li>Warm Towel</li>
+                                                <li>Polish Application</li>
+                                                <li>Optional Gel Color Upgrade Available</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-lg border-b border-brand-teal/50 mb-2">Pedicure</p>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li>Nail Trimming, Shaping and Cuticle Care</li>
+                                                <li>2-Minute Massage</li>
+                                                <li>Hot Stone</li>
+                                                <li>Warm Towel</li>
+                                                <li>Polish Application</li>
+                                                <li>Optional Gel Color Upgrade Available</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <!-- ** INNER DROPDOWN: Replenishment Package ** -->
+                            <details class="package-item bg-teal-50 shadow-md border border-teal-200">
+                                <summary class="package-summary hover:bg-teal-100">
+                                    <h4 class="text-2xl font-serif font-bold text-brand-teal">Replenishment Package</h4>
+                                </summary>
+                                <div class="package-content">
+                                    <p class="text-gray-600 mb-4 italic">Restore and rejuvenate with extra care</p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div>
+                                            <p class="font-semibold text-lg border-b border-brand-pink/50 mb-2">Manicure</p>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li>Nail Trimming, Shaping and Cuticle Care</li>
+                                                <li>Exfoliating Scrub</li>
+                                                <li>Hot Oil/Lotion</li>
+                                                <li>5-Minute Massage</li>
+                                                <li>Hot Stone & Warm Towel</li>
+                                                <li>Polish Application</li>
+                                                <li>Optional Gel Color Upgrade Available</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-lg border-b border-brand-teal/50 mb-2">Pedicure</p>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li>Nail Trimming, Shaping and Cuticle Care</li>
+                                                <li>Exfoliating Scrub</li>
+                                                <li>Hot Oil/Lotion</li>
+                                                <li>5-Minute Massage</li>
+                                                <li>Hot Stone & Warm Towel</li>
+                                                <li>Polish Application</li>
+                                                <li>Optional Gel Color Upgrade Available</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <!-- ** INNER DROPDOWN: Relax Package ** -->
+                            <details class="package-item bg-purple-50 shadow-md border border-purple-200">
+                                <summary class="package-summary hover:bg-purple-100">
+                                    <h4 class="text-2xl font-serif font-bold text-purple-600">Relax Package</h4>
+                                </summary>
+                                <div class="package-content">
+                                    <p class="text-gray-600 mb-4 italic">Unwind with extended massage and premium care</p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div>
+                                            <p class="font-semibold text-lg border-b border-brand-pink/50 mb-2">Manicure</p>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li>Nail Trimming, Shaping and Cuticle Care</li>
+                                                <li>Exfoliating Scrub</li>
+                                                <li>Hot Oil & Cooling Gel</li>
+                                                <li>7-Minute Massage</li>
+                                                <li>Hot Stone & Warm Towel</li>
+                                                <li>Polish Application</li>
+                                                <li>Optional Gel Color Upgrade Available</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-lg border-b border-brand-teal/50 mb-2">Pedicure</p>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li>Nail Trimming, Shaping and Cuticle Care</li>
+                                                <li>Callus Treatment</li>
+                                                <li>Exfoliating Scrub</li>
+                                                <li>Hot Oil & Cooling Gel</li>
+                                                <li>7-Minute Massage</li>
+                                                <li>Hot Stone & Warm Towel</li>
+                                                <li>Polish Application</li>
+                                                <li>Optional Gel Color Upgrade Available</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <!-- ** INNER DROPDOWN: Rejuvenate Package ** -->
+                            <details class="package-item bg-yellow-50 shadow-md border border-yellow-200">
+                                <summary class="package-summary hover:bg-yellow-100">
+                                    <h4 class="text-2xl font-serif font-bold text-brand-gold">Rejuvenate Package</h4>
+                                </summary>
+                                <div class="package-content">
+                                    <p class="text-gray-600 mb-4 italic">Our ultimate luxury spa experience</p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div>
+                                            <p class="font-semibold text-lg border-b border-brand-pink/50 mb-2">Manicure</p>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li>Nail Trimming, Shaping and Cuticle Care</li>
+                                                <li>Exfoliating Scrub</li>
+                                                <li>Hot Oil & Cooling Gel</li>
+                                                <li>12-Minute Relaxing Massage</li>
+                                                <li>Hot Stone & Warm Towel</li>
+                                                <li>Detoxifying Clay Mud Mask or Paraffin</li>
+                                                <li>Polish Application</li>
+                                                <li>Optional Gel Color Upgrade Available</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-lg border-b border-brand-teal/50 mb-2">Pedicure</p>
+                                            <ul class="text-sm text-gray-600 space-y-1">
+                                                <li>Nail Trimming, Shaping and Cuticle Care</li>
+                                                <li>Callus Treatment</li>
+                                                <li>Exfoliating Scrub</li>
+                                                <li>Hot Oil & Cooling Gel</li>
+                                                <li>12-Minute Relaxing Massage</li>
+                                                <li>Hot Stone & Warm Towel</li>
+                                                <li>Detoxifying Clay Mud Mask or Paraffin</li>
+                                                <li>Polish Application</li>
+                                                <li>Optional Gel Color Upgrade Available</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 2. NAIL ENHANCEMENT DROPDOWN -->
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+                    <summary class="accordion-summary">
+                        Nail Enhancement
+                    </summary>
+                    <div class="accordion-content">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h4 class="font-bold text-lg mb-3 text-brand-pink">Overlay</h4>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li>Acrylic Overlay</li>
+                                    <li>Dipping Powder Overlay</li>
+                                    <li>Builder Gel Overlay</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-3 text-brand-pink">Full Set</h4>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li>Acrylic Full Set</li>
+                                    <li>Dipping Powder Full Set</li>
+                                    <li>Builder Gel Full Set</li>
+                                    <li>Gel-X Full Set</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <h4 class="font-bold text-lg mb-3 text-brand-pink">Maintenance & Removal</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li>Refill</li>
+                                <li>Cut Down</li>
+                                <li>Gel/Acrylic Removal</li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-gray-500 italic">*Price may vary based on length and design complexity. Please call us for details.</p>
+                    </div>
+                </details>
+
+                <!-- 3. ADDITIONAL SERVICES DROPDOWN -->
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+                    <summary class="accordion-summary">
+                        Additional Services
+                    </summary>
+                    <div class="accordion-content">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li>Polish Change (Manicure)</li>
+                                    <li>Polish Change (Pedicure)</li>
+                                    <li>Callus Removal</li>
+                                    <li>Paraffin Treatment</li>
+                                    <li>Clay Mask</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li>Shiny Buff</li>
+                                    <li>Ombre/Chrome/Hologram</li>
+                                    <li>French Tip</li>
+                                    <li>Custom Design</li>
+                                    <li>Sea Salt Scrub</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+                
+                <!-- 4. WAXING SERVICES DROPDOWN -->
+                <details class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+                    <summary class="accordion-summary">
+                        Waxing Services
+                    </summary>
+                    <div class="accordion-content">
+                        <p class="text-sm text-gray-600 italic mb-6 text-center">*Special pricing available for maintenance appointments. Please call us for pricing.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold mb-3 text-brand-pink">Facial</h4>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li>Eyebrows</li>
+                                    <li>Lips / Chin / Neck</li>
+                                    <li>Side Burns / Cheeks</li>
+                                    <li>Forehead</li>
+                                    <li>Brows, Lips, & Chin</li>
+                                    <li>Full Face</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-3 text-brand-pink">Body</h4>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li>Back / Chest</li>
+                                    <li>Under Arms</li>
+                                    <li>Half Arms</li>
+                                    <li>Full Arms</li>
+                                    <li>Half Legs</li>
+                                    <li>Full Legs</li>
+                                    <li>Bikini</li>
+                                    <li>Brazilian</li>
+                                    <li>Fingers or Toes</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="section-subheading">GET IN TOUCH</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Visit Us Today</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Walk-ins welcome! We look forward to serving you.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <h3 class="text-2xl font-serif font-bold mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i data-lucide="map-pin" class="w-6 h-6 mr-4 text-brand-pink mt-1"></i>
+                            <div>
+                                <h4 class="font-bold mb-1">Address</h4>
+                                <p class="text-gray-600">5353 Katella Ave., Unit A<br>Cypress, CA 90720</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-lucide="phone" class="w-6 h-6 mr-4 text-brand-pink mt-1"></i>
+                            <div>
+                                <h4 class="font-bold mb-1">Phone</h4>
+                                <p class="text-gray-600">714-820-6172</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-lucide="clock" class="w-6 h-6 mr-4 text-brand-pink mt-1"></i>
+                            <div>
+                                <h4 class="font-bold mb-1">Hours</h4>
+                                <p class="text-gray-600">
+                                    Mon - Fri: 9:00 AM - 7:00 PM<br>
+                                    Saturday: 9:00 AM - 6:00 PM<br>
+                                    Sunday: Closed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gray-100 rounded-lg p-8">
+                        <h3 class="text-2xl font-serif font-bold mb-4">Ready to Book?</h3>
+                        <p class="text-gray-600 mb-6">
+                            Call us today to schedule your appointment or simply walk in. We're here to make you look and feel beautiful!
+                        </p>
+                        <a href="tel:7148206172" class="glow-button px-8 py-4 bg-brand-pink text-white font-bold tracking-widest uppercase rounded-lg">
+                            Call Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <section class="bg-pink-50 text-gray-800 py-16">
+        <div class="container mx-auto px-4">
+            
+            <!-- Info Strip Section (Keep this 3-column) -->
+            <div class="mb-16 pb-16 border-b border-pink-200">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="0">
+                        <i data-lucide="clock" class="w-8 h-8 mb-4 text-brand-pink"></i>
+                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Opening Hours</h4>
+                        <p class="text-gray-700">Mon - Fri: 9:00 AM - 7:00 PM</p>
+                        <p class="text-gray-700">Sat: 9am - 6pm</p>
+                        <p class="text-gray-700 text-sm mt-2">Sunday: Closed</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                        <i data-lucide="map-pin" class="w-8 h-8 mb-4 text-brand-pink"></i>
+                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Location</h4>
+                        <p class="text-gray-700">5353 Katella Ave., Unit A</p>
+                        <p class="text-gray-700">Cypress, CA 90720</p>
+                        <a href="https://maps.google.com/?q=5353+Katella+Ave+Unit+A+Cypress+CA" target="_blank" class="text-brand-teal hover:underline text-sm mt-2">Get Directions →</a>
+                    </div>
+                    <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                        <i data-lucide="phone" class="w-8 h-8 mb-4 text-brand-pink"></i>
+                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Call Today</h4>
+                        <a href="tel:7148206172" class="text-2xl font-bold text-gray-800 hover:text-brand-pink transition-colors">714-820-6172</a>
+                        <p class="text-gray-700 text-sm mt-2">Walk-ins Welcome!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simplified Footer Content Section: Retains Logo and focuses on Social Media -->
+            <div class="grid grid-cols-1 md:col-span-3 gap-12 mb-12">
+                
+                <!-- Logo & Text Column (Now spans 3 columns on desktop for better centering) -->
+                <div class="md:col-span-3 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex justify-center items-center gap-3 mb-6">
+                        <img src="KNTLogonb.png" alt="K&T Nails and Spa Logo" class="h-24 w-auto" width="150" height="96" loading="lazy">
+                    </div>
+                    <p class="text-gray-600 leading-relaxed max-w-lg mx-auto mb-8">
+                        Your premier destination for nail care and relaxation in Cypress. Follow us on social media for the latest deals and nail art trends!
+                    </p>
+                    
+                    <!-- Increased Social Icons -->
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://www.facebook.com/kandtnailsandspa" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-colors transform hover:scale-110 shadow-md" title="Follow us on Facebook">
+                            <i data-lucide="facebook" class="w-8 h-8"></i>
+                        </a>
+                        <a href="https://www.instagram.com/kntnailsandspa" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-colors transform hover:scale-110 shadow-md" title="Follow us on Instagram">
+                            <i data-lucide="instagram" class="w-8 h-8"></i>
+                        </a>
+                        <a href="https://yelp.to/QXoz5-TAWd" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-colors transform hover:scale-110 shadow-md" title="Review us on Yelp">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.271 17.814L9.8 18.35c-.464.099-.812.514-.812.996 0 .348.174.674.464.87l3.075 2.074c.348.232.812.232 1.16 0l3.075-2.074c.29-.196.464-.522.464-.87 0-.482-.348-.897-.812-.996l-2.471-.536c-.348-.077-.58-.406-.58-.754V15.5c0-.522-.522-.928-1.044-.812-.522.116-.812.638-.812 1.16v1.734c0 .348-.232.677-.58.754z"/>
+                                <path d="M21.411 13.537l-2.936-1.624c-.406-.232-.928-.116-1.16.29-.116.232-.116.522 0 .754l1.508 2.645c.232.406.754.522 1.16.29l2.428-1.392c.696-.406.928-1.276.522-1.972-.232-.406-.696-.638-1.16-.638-.116 0-.232 0-.348.058l-2.818 1.624c-.348.196-.812.077-1.044-.29-.232-.348-.116-.812.232-1.044l2.818-1.624c.406-.232.522-.754.29-1.16-.232-.406-.754-.522-1.16-.29l-2.818 1.624c-.348.196-.812.077-1.044-.29-.232-.348-.116-.812.232-1.044l2.818-1.624c.406-.232.522-.754.29-1.16-.232-.406-.754-.522-1.16-.29L12 9.726c-.696.406-.928 1.276-.522 1.972.232.406.696.638 1.16.638.116 0 .232 0 .348-.058l2.818-1.624c.348-.196.812-.077 1.044.29.232.348.116.812-.232 1.044l-2.818 1.624c-.406.232-.522.754-.29 1.16.232.406.754.522 1.16.29l2.818-1.624c.696-.406.928-1.276.522-1.972z"/>
+                                <path d="M8.494 11.466c.232.348.116.812-.232 1.044l-2.818 1.624c-.348.196-.812.077-1.044-.29-.232-.348-.116-.812.232-1.044l2.818-1.624c.406-.232.928-.116 1.16.29.116.232.116.522 0 .754z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Removed the redundant two right columns -->
+            <div class="border-t border-pink-200 mt-16 pt-8 text-center text-gray-600 text-sm">
+                &copy; 2025 K&T Nails and Spa. All rights reserved.
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal Popup (Remains the same) -->
+    <div id="contactModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4" onclick="closeContactModal(event)">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all" onclick="event.stopPropagation()">
+            <div class="text-center">
+                <div class="mx-auto w-16 h-16 bg-brand-pink rounded-full flex items-center justify-center mb-4">
+                    <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                </div>
+                <h3 class="text-2xl font-serif font-bold mb-2">Call Us Today!</h3>
+                <p class="text-gray-600 mb-6">We're ready to serve you</p>
+                <a href="tel:7148206172" class="inline-block text-4xl font-bold text-brand-pink hover:text-brand-dark transition-colors mb-6">
+                    714-820-6172
+                </a>
+                <div class="space-y-2 text-sm text-gray-600 mb-6">
+                    <p><strong>Mon - Fri:</strong> 9:00 AM - 7:00 PM</p>
+                    <p><strong>Saturday:</strong> 9:00 AM - 6:00 PM</p>
+                    <p><strong>Sunday:</strong> Closed</p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="tel:7148206172" class="glow-button flex-1 px-6 py-3 bg-brand-pink text-white font-bold rounded-lg">
+                        Call Now
+                    </a>
+                    <button onclick="closeContactModal()" class="flex-1 px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-lg hover:bg-gray-300 transition-colors">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button onclick="window.scrollTo(0,0)" class="fixed bottom-8 right-8 bg-brand-pink text-white p-3 rounded-full shadow-lg hover:bg-white hover:text-brand-pink transition-all z-50 border border-brand-pink">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+
+    <!-- AOS Animation Script -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Wait for DOM and libraries to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Animations
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    once: true,
+                    offset: 100,
+                    duration: 800,
+                    easing: 'ease-out-cubic',
+                });
+            }
+
+            // Initialize Icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+
+        // Contact Modal Functions
+        function openContactModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            // Re-initialize icons for modal
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }, 100);
+        }
+
+        function closeContactModal(event) {
+            if (!event || event.target.id === 'contactModal') {
+                const modal = document.getElementById('contactModal');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeContactModal();
+            }
+        });
+
+        // Page Loader - Hide after page loads
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('page-loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 500); // Small delay for smooth transition
+        });
+
+        // Mobile Menu Toggle with Accessibility
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const menuButton = document.querySelector('[aria-controls="mobile-menu"]');
+            const isHidden = menu.classList.contains('hidden');
+
+            menu.classList.toggle('hidden');
+
+            // Update ARIA attribute for accessibility
+            if (menuButton) {
+                menuButton.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+            }
+
+            const navbar = document.getElementById('navbar');
+
+            // Toggle background color based on menu state
+            // If the mobile menu is visible, change navbar background to black for better contrast/visibility on mobile
+            if (menu.classList.contains('hidden')) {
+                // Menu is closing
+                navbar.classList.remove('bg-black');
+                navbar.classList.add('bg-pink-50');
+            } else {
+                 // Menu is opening
+                navbar.classList.remove('bg-pink-50');
+                navbar.classList.add('bg-black');
+            }
+        }
+
+        // Navbar Scroll Effect: Adjusts padding and shadow on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                // If scrolled down
+                navbar.classList.add('py-3', 'shadow-lg', 'bg-pink-100');
+                navbar.classList.remove('py-4', 'bg-pink-50');
+            } else {
+                // At the top
+                navbar.classList.remove('py-3', 'shadow-lg', 'bg-pink-100');
+                navbar.classList.add('py-4', 'bg-pink-50');
+            }
+        });
+
+        // --- Gemini AI Logic ---
+        // IMPORTANT: For production, move this API key to environment variables or a secure backend
+        // Never commit API keys to public repositories
+        // Consider implementing a backend proxy to keep the API key secure
+        const apiKey = ""; // Replace with your Gemini API key (or better: use a backend proxy)
+        const aiSubmitBtn = document.getElementById('ai-submit-btn');
+        const aiInput = document.getElementById('ai-input');
+        const aiResponse = document.getElementById('ai-chat-response');
+        const aiLoading = document.getElementById('ai-loading');
+        const aiResult = document.getElementById('ai-result');
+
+        if (aiSubmitBtn) {
+            aiSubmitBtn.addEventListener('click', async () => {
+                const prompt = aiInput.value.trim();
+                if (!prompt) return;
+
+                // UI: Show loading
+                aiResponse.classList.add('open');
+                aiLoading.classList.remove('hidden');
+                aiResult.classList.add('hidden');
+
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [{ text: `You are a helpful and creative AI Stylist for K&T Nails and Spa. 
+                                Based on the user's description (occasion, mood, or outfit), recommend a specific service from our menu (e.g., Gel-X, Dip Powder, specific Spa Pedicure package) and suggest a nail design or color. 
+                                Keep it friendly, short, and encouraging. 
+                                Mention our services like "Refresh Package", "Relax Package", etc. if relevant. 
+                                User Query: ${prompt}` }]
+                            }]
+                        })
+                    });
+
+                    if (!response.ok) {
+                         // Exponential backoff logic would go here in a full app, using simplified alert for demo
+                         throw new Error('API Error');
+                    }
+
+                    const data = await response.json();
+                    const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't come up with a style right now. Please try again!";
+
+                    // Display Result
+                    aiLoading.classList.add('hidden');
+                    aiResult.innerHTML = `<p class="font-medium text-lg text-brand-pink mb-2">✨ Stylist Recommendation:</p><p>${aiText.replace(/\n/g, '<br>')}</p>`;
+                    aiResult.classList.remove('hidden');
+
+                } catch (error) {
+                    console.error(error);
+                    aiLoading.classList.add('hidden');
+                    aiResult.innerHTML = "<p class='text-red-500'>Oops! Something went wrong. Please try asking again.</p>";
+                    aiResult.classList.remove('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# K&T Nails and Spa - Robots.txt
+# This file tells search engine crawlers which pages to index
+
+User-agent: *
+Allow: /
+
+# Disallow crawling of admin or private directories (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location (create a sitemap.xml file for better SEO)
+Sitemap: https://www.kntnailsandspa.com/sitemap.xml
+
+# Popular search engine bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block bad bots (optional)
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /

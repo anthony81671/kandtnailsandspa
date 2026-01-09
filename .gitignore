@@ -1,0 +1,63 @@
+# K&T Nails and Spa - Git Ignore File
+# Files and folders to exclude from Git repository
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor/IDE Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Environment Variables (IMPORTANT for security!)
+.env
+.env.local
+.env.production
+config.js
+
+# Backup Files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+
+# Node Modules (if you add build tools later)
+node_modules/
+package-lock.json
+
+# Build Output (if you add build process)
+dist/
+build/
+
+# API Keys and Secrets
+secrets.js
+api-keys.txt
+credentials.json
+
+# Large Files (compress before uploading)
+*.psd
+*.ai
+*.sketch
