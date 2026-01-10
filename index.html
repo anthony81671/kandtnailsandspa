@@ -171,28 +171,53 @@
             margin-bottom: 0.5rem; /* mb-2 */
         }
 
-        /* AI Chat Box Styling */
-        #ai-chat-response {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
+        /* --- Mobile Responsiveness (5-Step Guide Implementation) --- */
+        
+        /* 4. Make Images Flexible */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Prevents tiny gaps under images */
         }
-        #ai-chat-response.open {
-            max-height: 500px; /* Arbitrary large height */
+
+        /* 2. Relative Units for Containers - Reinforced */
+        .container {
+            width: 100% !important;
+            max-width: 1280px; /* Standardizing max-width */
+            margin-left: auto;
+            margin-right: auto;
         }
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #ec4899;
-            border-radius: 50%;
-            display: inline-block;
-            animation: bounce 1.4s infinite ease-in-out both;
+
+        /* 3. Implement CSS Media Queries for custom refinements */
+        /* Mobile styles (Screens smaller than 768px) */
+        @media (max-width: 768px) {
+            /* Adjust hero text for readability */
+            h1 {
+                font-size: 2.25rem !important; /* Forces 36px/text-4xl on small screens */
+                line-height: 1.2 !important;
+            }
+            
+            .hero-p {
+                font-size: 1rem !important;
+            }
+
+            /* 5. Flexbox/Grid Stacking - ensuring full width on mobile */
+            .grid-stack {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Adjust section padding for mobile */
+            section {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
         }
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
+
+        /* Smallest phones (under 375px) */
+        @media (max-width: 375px) {
+            h1 {
+                font-size: 1.875rem !important; /* 30px */
+            }
         }
     </style>
     
@@ -337,10 +362,12 @@
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 bg-pink-50 shadow-md">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <!-- Logo Area with Image -->
-            <div class="flex flex-col items-start cursor-pointer" onclick="window.scrollTo(0,0)" role="button" tabindex="0" aria-label="Scroll to top" onkeypress="if(event.key==='Enter')window.scrollTo(0,0)">
-                <img src="KNTLogonb.png" alt="K&T Nails and Spa Logo" class="h-32 w-auto hover:scale-105 transition-transform duration-300" width="150" height="128" loading="eager"> 
-                <!-- Tagline -->
-                <p class="text-sm text-brand-pink font-bold mt-2 tracking-widest uppercase">Your Nails, Our Passion, Always Unforgettable</p>
+            <div class="flex flex-col items-center lg:items-start cursor-pointer transition-all duration-300" onclick="window.scrollTo(0,0)" role="button" tabindex="0" aria-label="Scroll to top">
+                <img src="KNTLogonb.png" alt="K&T Nails and Spa Logo" class="h-16 md:h-24 lg:h-32 w-auto hover:scale-105 transition-transform duration-300" width="150" height="128" loading="eager"> 
+                <!-- Tagline: Adjusted for mobile to prevent overflow -->
+                <p class="text-[10px] md:text-sm text-brand-pink font-bold mt-1 md:mt-2 tracking-[0.1em] md:tracking-widest uppercase text-center lg:text-left max-w-[280px] md:max-w-none">
+                    Your Nails, Our Passion, Always Unforgettable
+                </p>
             </div>
 
             <!-- Desktop Menu -->
@@ -369,19 +396,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="relative h-[75vh] flex items-center justify-center text-center text-white overflow-hidden">
+    <header id="home" class="relative min-h-[85vh] flex flex-col items-center justify-center text-center text-white overflow-hidden pt-36 md:pt-48 pb-12">
         <div class="absolute inset-0 z-0 parallax" style="background-image: url('hero.png');">
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
 
-        <div class="relative z-10 container mx-auto px-6 md:px-4 pt-20 md:pt-16" data-aos="fade-up" data-aos-duration="1500">
-            <h1 class="text-4xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight">
+        <div class="relative z-10 container mx-auto px-6 md:px-4" data-aos="fade-up" data-aos-duration="1500">
+            <h1 class="text-4xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight text-center mx-auto">
                 Beauty, Relaxation<br/> & Elegance
             </h1>
-            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light">
+            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light text-center">
                 Experience the finest nail care in Cypress, CA. Where luxury meets style and comfort.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                 <button onclick="openContactModal()" class="glow-button px-8 py-4 bg-brand-pink text-white font-bold tracking-widest uppercase rounded-lg">
                     Contact Us
                 </button>
