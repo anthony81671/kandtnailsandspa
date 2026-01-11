@@ -53,71 +53,169 @@
 
     <!-- Google Fonts: Playfair Display (Serif) & Lato (Sans) -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap');
-        
+        /* --- Glassmorphism Core --- */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --pink-glow: rgba(236, 72, 153, 0.2);
+            --teal-glow: rgba(20, 184, 166, 0.15);
+        }
+
         body { 
             font-family: 'Lato', sans-serif; 
-            transition: background-color 0.5s ease; /* Smooth background transitions */
-        }
-        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
-        
-        /* Parallax Background Class */
-        .parallax {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        /* Enable parallax only on larger screens (mobile has issues with fixed backgrounds) */
-        @media (min-width: 768px) {
-            .parallax {
-                background-attachment: fixed;
-            }
+            background-color: #fcfcfd;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* --- Custom Professional Glow Button --- */
+        /* Ambient Glowing Orbs Background */
+        .orb-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: drift 25s infinite alternate ease-in-out;
+        }
+
+        .orb-pink {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--pink-glow) 0%, transparent 70%);
+            top: -10%;
+            right: -10%;
+        }
+
+        .orb-teal {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--teal-glow) 0%, transparent 70%);
+            bottom: -5%;
+            left: -5%;
+            animation-delay: -5s;
+        }
+
+        @keyframes drift {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(5%, 10%) scale(1.1); }
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .navbar-glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h1, h2, h3, h4, .font-serif { 
+            font-family: 'Playfair Display', serif; 
+            letter-spacing: -0.01em;
+        }
+        
+        /* Refractive/Glow Buttons */
         .glow-button {
-            transition: all 0.3s ease-out;
-            box-shadow: 0 4px 6px rgba(236, 72, 153, 0.4); /* Pink shadow */
-            border: 1px solid transparent;
-        }
-        .glow-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(236, 72, 153, 0.6), 0 0 10px rgba(236, 72, 153, 0.8); /* Stronger glow */
-            background-color: #db2777; /* Slightly darker pink on hover */
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            background: #ec4899;
+            color: white;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #ec4899; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #db2777; }
+        .glow-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .glow-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(236, 72, 153, 0.4);
+            background: #f472b6;
+        }
+
+        .glow-button:hover::after {
+            opacity: 1;
+        }
+
+        /* Modal/Dropdown Blur */
+        details[open] summary ~ * {
+            animation: glassFadeIn 0.5s ease-out;
+        }
+
+        @keyframes glassFadeIn {
+            from { opacity: 0; transform: translateY(10px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(236, 72, 153, 0.3); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(236, 72, 153, 0.5); }
 
         /* Custom styling for the native details/summary element */
         .accordion-item {
-            border: 1px solid #fce7f3;
-            border-radius: 0.75rem; 
-            margin-bottom: 1rem;
-            background-color: white;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); 
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 1.25rem; 
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); 
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .accordion-item:hover {
+            background: rgba(255, 255, 255, 0.5);
+            border-color: rgba(236, 72, 153, 0.3);
+            transform: translateY(-2px);
         }
         .accordion-summary {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem; 
+            padding: 1.75rem 2rem; 
             font-size: 1.5rem; /* text-2xl */
             font-weight: 700; /* font-bold */
             cursor: pointer;
-            color: #ec4899; /* brand-pink */
-            transition: background-color 0.2s;
+            color: #1f2937; /* Neutral dark */
+            transition: all 0.2s;
             font-family: 'Playfair Display', serif; 
             /* Hide the default drop-down arrow */
             list-style: none; 
         }
         .accordion-summary:hover {
-            background-color: #fcf6f8;
+            color: #ec4899;
         }
         .accordion-summary::-webkit-details-marker { display: none; }
         .accordion-content {
@@ -350,16 +448,26 @@
     }
     </script>
 
+    <!-- Ambient Background Orbs -->
+    <div class="orb-container">
+        <div class="orb orb-pink"></div>
+        <div class="orb orb-teal"></div>
+        <div class="orb orb-pink" style="top: 60%; left: -10%; width: 400px; height: 400px; animation-delay: -10s;"></div>
+    </div>
+
     <!-- Page Loading Spinner -->
-    <div id="page-loader" class="fixed inset-0 bg-white z-[200] flex items-center justify-center transition-opacity duration-500">
+    <div id="page-loader" class="fixed inset-0 bg-white/80 backdrop-blur-xl z-[200] flex items-center justify-center transition-opacity duration-700">
         <div class="text-center">
-            <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-brand-pink border-t-transparent mb-4"></div>
-            <p class="text-brand-pink font-serif text-xl font-bold">K&T Nails and Spa</p>
+            <div class="relative inline-block">
+                <div class="rounded-full h-20 w-20 border-2 border-brand-pink/20 mb-4"></div>
+                <div class="absolute inset-0 animate-spin rounded-full h-20 w-20 border-t-2 border-brand-pink"></div>
+            </div>
+            <p class="text-brand-pink font-serif text-2xl font-bold tracking-widest mt-4">K&T</p>
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 bg-pink-50 shadow-md">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-4 navbar-glass">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <!-- Logo Area with Image -->
             <div class="flex flex-col items-center lg:items-start cursor-pointer transition-all duration-300" onclick="window.scrollTo(0,0)" role="button" tabindex="0" aria-label="Scroll to top">
@@ -373,10 +481,10 @@
             <!-- Desktop Menu -->
             <nav class="hidden lg:flex items-center space-x-6" role="navigation" aria-label="Main navigation">
                 <a href="#home" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to home section">Home</a>
-                <a href="#about" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to about us section">About</a>
-                <a href="#faq" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to FAQ section">FAQ</a>
-                <a href="#testimonials" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to testimonials section">Reviews</a>
                 <a href="#services" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to services section">Services</a>
+                <a href="#testimonials" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to testimonials section">Reviews</a>
+                <a href="#faq" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to FAQ section">FAQ</a>
+                <a href="#about" class="text-xs font-bold uppercase tracking-widest text-gray-800 hover:text-brand-pink transition-colors" aria-label="Go to about us section">About</a>
             </nav>
 
             <!-- Mobile Menu Button -->
@@ -388,31 +496,38 @@
         <!-- Mobile Menu Overlay -->
         <nav id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white border-t border-gray-200 py-4 px-6 flex flex-col space-y-4 shadow-xl" role="navigation" aria-label="Mobile navigation">
             <a href="#home" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to home section">HOME</a>
-            <a href="#about" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to about us section">ABOUT US</a>
-            <a href="#faq" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to FAQ section">FAQ</a>
-            <a href="#testimonials" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to testimonials section">REVIEWS</a>
             <a href="#services" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to services section">SERVICES</a>
+            <a href="#testimonials" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to testimonials section">REVIEWS</a>
+            <a href="#faq" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to FAQ section">FAQ</a>
+            <a href="#about" class="text-gray-800 font-medium py-2 border-b border-gray-200" onclick="toggleMenu()" aria-label="Go to about us section">ABOUT US</a>
         </nav>
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="relative min-h-[85vh] flex flex-col items-center justify-center text-center text-white overflow-hidden pt-36 md:pt-48 pb-12">
-        <div class="absolute inset-0 z-0 parallax" style="background-image: url('hero.png');">
-            <div class="absolute inset-0 bg-black/50"></div>
+    <header id="home" class="relative min-h-screen flex flex-col items-center justify-center text-center text-white overflow-hidden pt-36 pb-24">
+        <div class="absolute inset-0 z-0 scale-105" style="background-image: url('hero.png'); background-size: cover; background-position: center; filter: brightness(0.7) contrast(1.1);">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#fcfcfd]"></div>
         </div>
 
-        <div class="relative z-10 container mx-auto px-6 md:px-4" data-aos="fade-up" data-aos-duration="1500">
-            <h1 class="text-4xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight text-center mx-auto">
-                Where Beauty<br/> Meets Artistry
-            </h1>
-            <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10 font-light text-center">
-                Indulge in an exquisite nail care experience. Our skilled artists transform your nails into stunning works of art with meticulous attention to detail.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <button onclick="openContactModal()" class="glow-button px-8 py-4 bg-brand-pink text-white font-bold tracking-widest uppercase rounded-lg">
-                    Contact Us
-                </button>
+        <div class="relative z-10 container mx-auto px-6 md:px-4" data-aos="zoom-out" data-aos-duration="2000">
+            <div class="glass-card inline-block px-12 py-16 md:px-16 md:py-24 border-white/20">
+                <h1 class="text-4xl md:text-7xl lg:text-8xl font-serif font-bold mb-8 leading-tight text-white drop-shadow-2xl">
+                    Where Beauty<br/> <span class="text-brand-pink italic">Meets</span> Artistry
+                </h1>
+                <p class="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-12 font-light leading-relaxed tracking-wide">
+                    Indulge in an exquisite nail care experience. Our skilled artists transform your nails into stunning works of art with meticulous attention to detail.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                    <button onclick="openContactModal()" class="glow-button px-10 py-5 text-white font-bold tracking-widest uppercase rounded-full">
+                        Experience Luxury
+                    </button>
+                </div>
             </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-60">
+            <div class="w-px h-16 bg-white/40 mx-auto"></div>
         </div>
     </header>
 
@@ -421,22 +536,23 @@
 
 
     <!-- Services Section -->
-    <section id="services" class="py-24 bg-white">
+    <section id="services" class="py-24 bg-transparent">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-subheading">OUR SERVICES</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Spa Packages & Services</h2>
+                <span class="section-subheading text-brand-pink/80">OUR SERVICES</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4 text-gray-900">Spa Packages & Services</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Discover our comprehensive menu of premium nail care services designed for ultimate relaxation and beauty. Please call us for current pricing.
+                    Discover our comprehensive menu of premium nail care services designed for ultimate relaxation and beauty.
                 </p>
             </div>
 
             <div class="max-w-6xl mx-auto">
-                
-                <div class="text-center mb-8 p-6 bg-gradient-to-r from-brand-pink to-purple-500 text-white rounded-lg shadow-lg" data-aos="fade-up">
-                    <i data-lucide="phone" class="w-8 h-8 mx-auto mb-3"></i>
-                    <p class="text-xl font-bold mb-2">Call for Pricing and Appointments</p>
-                    <a href="tel:7148206172" class="text-2xl font-bold hover:underline">714-820-6172</a>
+                <div class="glass-card text-center mb-12 p-10 border-brand-pink/20" data-aos="fade-up">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-pink/10 mb-6">
+                        <i data-lucide="phone" class="w-8 h-8 text-brand-pink"></i>
+                    </div>
+                    <p class="text-xl font-bold mb-2 text-gray-800">Call for Pricing and Appointments</p>
+                    <a href="tel:7148206172" class="text-3xl font-bold text-brand-pink hover:scale-105 transition-transform inline-block">714-820-6172</a>
                 </div>
 
                 <!-- 1. SPA PACKAGES DROPDOWN (Outer) -->
@@ -703,35 +819,111 @@
     </section>
 
     <!-- Instagram Feed Section -->
-    <section class="py-24 bg-white">
+    <section class="py-24 bg-transparent">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
                 <span class="section-subheading">OUR ARTISTRY</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Stunning Nail Designs</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
-                    See our latest nail art and spa treatments. Every design is a masterpiece crafted with care and precision.
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Stunning Nail Art</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+                    Explore our latest masterpieces and spa highlights. Every detail is curated for elegance.
                 </p>
-                <a href="https://www.instagram.com/kntnailsandspa" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:shadow-lg transition-all">
-                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                <a href="https://www.instagram.com/kntnailsandspa" target="_blank" rel="noopener noreferrer" class="glow-button inline-flex items-center gap-3 px-8 py-4 text-white font-bold rounded-full transition-all">
+                    <i data-lucide="instagram" class="w-6 h-6"></i>
                     Follow @kntnailsandspa
                 </a>
             </div>
 
-            <div class="max-w-6xl mx-auto" data-aos="fade-up">
+            <div class="glass-card p-4 md:p-8 border-white/30" data-aos="fade-up">
                 <script src="https://elfsightcdn.com/platform.js" async></script>
                 <div class="elfsight-app-03287cc4-2871-4410-b46a-f890f689fdd1" data-elfsight-app-lazy></div>
             </div>
         </div>
     </section>
+
+    <!-- Customer Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-transparent relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="section-subheading">KIND WORDS</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4 text-gray-900">Guest Experiences</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto font-light">
+                    The highest compliment is the trust of our guests.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="glass-card p-10 border-white/50 shadow-sm" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex mb-6 text-brand-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-700 mb-8 italic leading-relaxed text-sm font-light">"Best nail salon in Cypress! The staff is incredibly friendly and professional. My gel manicure lasted over 3 weeks without chipping. The atmosphere is so relaxing."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-brand-pink/10 rounded-full flex items-center justify-center text-brand-pink font-serif font-bold text-xl border border-brand-pink/20">S</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-800 text-sm">Sarah M.</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500">Regular Guest</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="glass-card p-10 border-white/50 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex mb-6 text-brand-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-700 mb-8 italic leading-relaxed text-sm font-light">"I've been coming here since they opened and I've never been disappointed! The Rejuvenate Package is absolutely heavenly - worth every penny."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-brand-teal/10 rounded-full flex items-center justify-center text-brand-teal font-serif font-bold text-xl border border-brand-teal/20">J</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-800 text-sm">Jennifer L.</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500">Spa Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass-card p-10 border-white/50 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex mb-6 text-brand-gold">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-gray-700 mb-8 italic leading-relaxed text-sm font-light">"Amazing nail art! I showed them a Pinterest inspiration and they recreated it perfectly. The attention to detail is incredible. My go-to salon!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center text-purple-600 font-serif font-bold text-xl border border-purple-200">M</div>
+                        <div class="ml-4">
+                            <p class="font-bold text-gray-800 text-sm">Maria R.</p>
+                            <p class="text-[10px] uppercase tracking-widest text-gray-500">Artistry Lover</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-16" data-aos="fade-up">
+                <a href="https://yelp.to/QXoz5-TAWd" target="_blank" rel="noopener noreferrer" class="glow-button inline-flex items-center gap-3 px-10 py-5 text-white font-bold rounded-2xl tracking-widest uppercase text-sm">
+                    <span class="font-serif italic lowercase text-lg mr-1">y</span> Share Your Experience
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ Section -->
-    <section id="faq" class="py-24 bg-white">
+    <section id="faq" class="py-24 bg-transparent overflow-hidden">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-subheading">FREQUENTLY ASKED QUESTIONS</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Your Questions Answered</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Everything you need to know about our services, appointments, and salon policies.
-                </p>
+                <span class="section-subheading">YOUR QUESTIONS</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Refining Your Experience</h2>
             </div>
 
             <div class="max-w-4xl mx-auto space-y-4">
@@ -825,140 +1017,65 @@
         </div>
     </section>
 
-    <!-- Customer Testimonials Section -->
-    <section id="testimonials" class="py-24 bg-gradient-to-br from-pink-50 to-purple-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="section-subheading">TESTIMONIALS</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">What Our Clients Say</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Don't just take our word for it - hear from our valued clients about their experiences.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Testimonial 1 -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 border border-pink-100" data-aos="fade-up" data-aos-delay="0">
-                    <div class="flex mb-4">
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                    </div>
-                    <p class="text-gray-700 mb-6 italic leading-relaxed">"Best nail salon in Cypress! The staff is incredibly friendly and professional. My gel manicure lasted over 3 weeks without chipping. The salon is always clean and the atmosphere is so relaxing."</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-brand-pink rounded-full flex items-center justify-center text-white font-bold text-xl">S</div>
-                        <div class="ml-4">
-                            <p class="font-bold text-gray-800">Sarah M.</p>
-                            <p class="text-sm text-gray-500">Regular Client</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 border border-pink-100" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex mb-4">
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                    </div>
-                    <p class="text-gray-700 mb-6 italic leading-relaxed">"I've been coming here since they opened and I've never been disappointed! The Rejuvenate Package is absolutely heavenly - the massage and spa treatments are worth every penny. Highly recommend!"</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold text-xl">J</div>
-                        <div class="ml-4">
-                            <p class="font-bold text-gray-800">Jennifer L.</p>
-                            <p class="text-sm text-gray-500">Spa Enthusiast</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="bg-white rounded-2xl shadow-lg p-8 border border-pink-100" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex mb-4">
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                        <i data-lucide="star" class="w-5 h-5 fill-brand-gold text-brand-gold" aria-hidden="true"></i>
-                    </div>
-                    <p class="text-gray-700 mb-6 italic leading-relaxed">"Amazing nail art! I showed them a Pinterest inspiration and they recreated it perfectly. The attention to detail is incredible. This is my go-to salon for all special occasions!"</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">M</div>
-                        <div class="ml-4">
-                            <p class="font-bold text-gray-800">Maria R.</p>
-                            <p class="text-sm text-gray-500">Nail Art Lover</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12" data-aos="fade-up">
-                <a href="https://yelp.to/QXoz5-TAWd" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-pink text-white font-bold rounded-full hover:shadow-lg transition-all glow-button">
-                    Leave us a review
-                    <i data-lucide="external-link" class="w-5 h-5" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Before & After Gallery Section -->
 
     <!-- About Section -->
-    <section id="about" class="py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="about" class="py-24 bg-transparent">
         <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-                <span class="section-subheading">OUR STORY</span>
-                
-                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-8">Welcome to K&T Nails & Spa</h2>
-                
-                <p class="text-lg text-gray-600 leading-relaxed mb-6">
-                    Since opening our doors in January 2022, K&T Nails and Spa has become Cypress's premier destination for luxury nail care and relaxation. Conveniently located next to Costco at 5353 Katella Ave., we've built a reputation for exceptional service, impeccable hygiene standards, and creating a welcoming atmosphere where every client feels like family.
-                </p>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                    Our experienced team of nail technicians combines artistic skill with the latest techniques to deliver stunning results. We pride ourselves on using only premium products and maintaining the highest sanitation standards. Whether you're preparing for a special occasion or simply treating yourself to some well-deserved pampering, we're here to make you look and feel your absolute best.
-                </p>
+            <div class="max-w-5xl mx-auto glass-card p-12 md:p-20 text-center border-white/40" data-aos="fade-up">
+                <span class="section-subheading text-brand-teal/80">OUR STORY</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-10 text-gray-900 leading-tight">Crystalline Beauty <br/><span class="text-brand-pink">&</span> Artistic Precision</h2>
+                <div class="space-y-8 text-lg text-gray-700 leading-relaxed font-light tracking-wide max-w-3xl mx-auto">
+                    <p>
+                        Since opening our doors in January 2022, <span class="font-bold text-gray-800">K&T Nails and Spa</span> has become Cypress's premier destination for luxury nail care and relaxation. Conveniently located next to Costco, we've built a sanctuary where every detail is designed for your comfort.
+                    </p>
+                    <p>
+                        Our philosophy centers on "clarity through depth." We combine artisanal skill with the finest products to deliver results that are both transparent in quality and high-end in aesthetic. Whether it's a quick refresh or our ultimate Rejuvenate Package, we invite you to experience the K&T difference.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-white">
+    <section id="contact" class="py-24 bg-transparent">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16" data-aos="fade-up">
                 <span class="section-subheading">GET IN TOUCH</span>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Visit Us Today</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Walk-ins welcome! We look forward to serving you.
-                </p>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-4 mb-4">Visit Our Sanctuary</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                <div data-aos="fade-up" data-aos-delay="0">
-                    <h3 class="text-2xl font-serif font-bold mb-6">Contact Information</h3>
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <i data-lucide="map-pin" class="w-6 h-6 mr-4 text-brand-pink mt-1"></i>
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div class="glass-card p-10 border-white/40" data-aos="fade-right">
+                    <h3 class="text-2xl font-serif font-bold mb-8 text-brand-pink">Contact Information</h3>
+                    <div class="space-y-8">
+                        <div class="flex items-start group">
+                            <div class="w-12 h-12 rounded-xl bg-brand-pink/10 flex items-center justify-center mr-5 transition-colors group-hover:bg-brand-pink/20">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-brand-pink"></i>
+                            </div>
                             <div>
-                                <h4 class="font-bold mb-1">Address</h4>
+                                <h4 class="font-bold text-gray-800 mb-1">Address</h4>
                                 <p class="text-gray-600">5353 Katella Ave., Unit A<br>Cypress, CA 90720</p>
                             </div>
                         </div>
-                        <div class="flex items-start">
-                            <i data-lucide="phone" class="w-6 h-6 mr-4 text-brand-pink mt-1"></i>
+                        <div class="flex items-start group">
+                            <div class="w-12 h-12 rounded-xl bg-brand-pink/10 flex items-center justify-center mr-5 transition-colors group-hover:bg-brand-pink/20">
+                                <i data-lucide="phone" class="w-6 h-6 text-brand-pink"></i>
+                            </div>
                             <div>
-                                <h4 class="font-bold mb-1">Phone</h4>
+                                <h4 class="font-bold text-gray-800 mb-1">Phone</h4>
                                 <p class="text-gray-600">714-820-6172</p>
                             </div>
                         </div>
-                        <div class="flex items-start">
-                            <i data-lucide="clock" class="w-6 h-6 mr-4 text-brand-pink mt-1"></i>
+                        <div class="flex items-start group">
+                            <div class="w-12 h-12 rounded-xl bg-brand-pink/10 flex items-center justify-center mr-5 transition-colors group-hover:bg-brand-pink/20">
+                                <i data-lucide="clock" class="w-6 h-6 text-brand-pink"></i>
+                            </div>
                             <div>
-                                <h4 class="font-bold mb-1">Hours</h4>
-                                <p class="text-gray-600">
+                                <h4 class="font-bold text-gray-800 mb-1">Hours</h4>
+                                <p class="text-gray-600 leading-relaxed">
                                     Mon - Fri: 9:00 AM - 7:00 PM<br>
                                     Saturday: 9:00 AM - 6:00 PM<br>
                                     Sunday: Closed
@@ -968,15 +1085,17 @@
                     </div>
                 </div>
 
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-gray-100 rounded-lg p-8">
-                        <h3 class="text-2xl font-serif font-bold mb-4">Ready to Book?</h3>
-                        <p class="text-gray-600 mb-6">
-                            Call us today to schedule your appointment or simply walk in. We're here to make you look and feel beautiful!
-                        </p>
-                        <a href="tel:7148206172" class="glow-button px-8 py-4 bg-brand-pink text-white font-bold tracking-widest uppercase rounded-lg">
-                            Call Now
+                <div class="glass-card p-10 border-brand-teal/20" data-aos="fade-left">
+                    <h3 class="text-2xl font-serif font-bold mb-6 text-brand-teal">Reserve Your Moment</h3>
+                    <p class="text-gray-600 mb-10 leading-relaxed font-light italic">
+                        "Luxury is in the details. We invite you to experience a level of care that goes beyond beauty."
+                    </p>
+                    <div class="space-y-6">
+                        <a href="tel:7148206172" class="glow-button w-full px-8 py-5 flex items-center justify-center gap-3 rounded-2xl font-bold tracking-widest uppercase">
+                            <i data-lucide="phone-call" class="w-5 h-5"></i>
+                            Call to Schedule
                         </a>
+                        <p class="text-center text-sm text-gray-500 font-medium">Walk-ins Are Always Gratefully Accepted</p>
                     </div>
                 </div>
             </div>
@@ -985,95 +1104,87 @@
 
 
     <!-- Footer -->
-    <section class="bg-pink-50 text-gray-800 py-16">
-        <div class="container mx-auto px-4">
+    <footer class="bg-transparent text-gray-800 py-16 relative overflow-hidden">
+        <div class="absolute inset-0 bg-white/40 backdrop-blur-md z-0"></div>
+        <div class="container mx-auto px-4 relative z-10">
             
-            <!-- Info Strip Section (Keep this 3-column) -->
-            <div class="mb-16 pb-16 border-b border-pink-200">
+            <!-- Info Strip Section -->
+            <div class="mb-16 pb-16 border-b border-white/30">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex flex-col items-center p-8 glass-card border-white/50" data-aos="fade-up" data-aos-delay="0">
                         <i data-lucide="clock" class="w-8 h-8 mb-4 text-brand-pink"></i>
-                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Opening Hours</h4>
-                        <p class="text-gray-700">Mon - Fri: 9:00 AM - 7:00 PM</p>
+                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Hours</h4>
+                        <p class="text-gray-700">Mon - Fri: 9am - 7pm</p>
                         <p class="text-gray-700">Sat: 9am - 6pm</p>
-                        <p class="text-gray-700 text-sm mt-2">Sunday: Closed</p>
+                        <p class="text-gray-700 text-sm mt-2 opacity-60">Closed Sunday</p>
                     </div>
-                    <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col items-center p-8 glass-card border-white/50" data-aos="fade-up" data-aos-delay="100">
                         <i data-lucide="map-pin" class="w-8 h-8 mb-4 text-brand-pink"></i>
-                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Location</h4>
+                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Visit</h4>
                         <p class="text-gray-700">5353 Katella Ave., Unit A</p>
                         <p class="text-gray-700">Cypress, CA 90720</p>
-                        <a href="https://maps.google.com/?q=5353+Katella+Ave+Unit+A+Cypress+CA" target="_blank" class="text-brand-teal hover:underline text-sm mt-2">Get Directions →</a>
+                        <a href="https://maps.google.com/?q=5353+Katella+Ave+Unit+A+Cypress+CA" target="_blank" class="text-brand-teal hover:underline text-sm font-bold mt-4">DIRECTIONS →</a>
                     </div>
-                    <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-col items-center p-8 glass-card border-white/50" data-aos="fade-up" data-aos-delay="200">
                         <i data-lucide="phone" class="w-8 h-8 mb-4 text-brand-pink"></i>
-                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Call Today</h4>
+                        <h4 class="font-serif font-bold text-xl mb-3 text-brand-pink">Contact</h4>
                         <a href="tel:7148206172" class="text-2xl font-bold text-gray-800 hover:text-brand-pink transition-colors">714-820-6172</a>
-                        <p class="text-gray-700 text-sm mt-2">Walk-ins Welcome!</p>
+                        <p class="text-gray-700 text-sm mt-2 opacity-60">Walk-ins Welcome</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Simplified Footer Content Section: Retains Logo and focuses on Social Media -->
             <div class="grid grid-cols-1 md:col-span-3 gap-12 mb-12">
-                
-                <!-- Logo & Text Column (Now spans 3 columns on desktop for better centering) -->
                 <div class="md:col-span-3 text-center" data-aos="fade-up" data-aos-delay="0">
-                    <div class="flex justify-center items-center gap-3 mb-6">
-                        <img src="KNTLogonb.png" alt="K&T Nails and Spa Logo" class="h-24 w-auto" width="150" height="96" loading="lazy">
+                    <div class="flex justify-center items-center gap-3 mb-8">
+                        <img src="KNTLogonb.png" alt="K&T Nails and Spa Logo" class="h-28 w-auto filter drop-shadow-md" width="150" height="96" loading="lazy">
                     </div>
-                    <p class="text-gray-600 leading-relaxed max-w-lg mx-auto mb-8">
-                        Your premier destination for nail care and relaxation in Cypress. Follow us on social media for the latest deals and nail art trends!
+                    <p class="text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 font-light italic">
+                        "Your premier destination for crystalline beauty and relaxation in Cypress."
                     </p>
                     
-                    <!-- Increased Social Icons -->
-                    <div class="flex justify-center space-x-6">
-                        <a href="https://www.facebook.com/kandtnailsandspa" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-colors transform hover:scale-110 shadow-md" title="Follow us on Facebook">
-                            <i data-lucide="facebook" class="w-8 h-8"></i>
+                    <div class="flex justify-center space-x-8">
+                        <a href="https://www.facebook.com/kandtnailsandspa" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full glass-card text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-all transform hover:scale-110" title="Facebook">
+                            <i data-lucide="facebook" class="w-7 h-7"></i>
                         </a>
-                        <a href="https://www.instagram.com/kntnailsandspa" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-colors transform hover:scale-110 shadow-md" title="Follow us on Instagram">
-                            <i data-lucide="instagram" class="w-8 h-8"></i>
+                        <a href="https://www.instagram.com/kntnailsandspa" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full glass-card text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-all transform hover:scale-110" title="Instagram">
+                            <i data-lucide="instagram" class="w-7 h-7"></i>
                         </a>
-                        <a href="https://yelp.to/QXoz5-TAWd" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-white text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-colors transform hover:scale-110 shadow-md" title="Review us on Yelp">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.271 17.814L9.8 18.35c-.464.099-.812.514-.812.996 0 .348.174.674.464.87l3.075 2.074c.348.232.812.232 1.16 0l3.075-2.074c.29-.196.464-.522.464-.87 0-.482-.348-.897-.812-.996l-2.471-.536c-.348-.077-.58-.406-.58-.754V15.5c0-.522-.522-.928-1.044-.812-.522.116-.812.638-.812 1.16v1.734c0 .348-.232.677-.58.754z"/>
-                                <path d="M21.411 13.537l-2.936-1.624c-.406-.232-.928-.116-1.16.29-.116.232-.116.522 0 .754l1.508 2.645c.232.406.754.522 1.16.29l2.428-1.392c.696-.406.928-1.276.522-1.972-.232-.406-.696-.638-1.16-.638-.116 0-.232 0-.348.058l-2.818 1.624c-.348.196-.812.077-1.044-.29-.232-.348-.116-.812.232-1.044l2.818-1.624c.406-.232.522-.754.29-1.16-.232-.406-.754-.522-1.16-.29l-2.818 1.624c-.348.196-.812.077-1.044-.29-.232-.348-.116-.812.232-1.044l2.818-1.624c.406-.232.522-.754.29-1.16-.232-.406-.754-.522-1.16-.29L12 9.726c-.696.406-.928 1.276-.522 1.972.232.406.696.638 1.16.638.116 0 .232 0 .348-.058l2.818-1.624c.348-.196.812-.077 1.044.29.232.348.116.812-.232 1.044l-2.818 1.624c-.406.232-.522.754-.29 1.16.232.406.754.522 1.16.29l2.818-1.624c.696-.406.928-1.276.522-1.972z"/>
-                                <path d="M8.494 11.466c.232.348.116.812-.232 1.044l-2.818 1.624c-.348.196-.812.077-1.044-.29-.232-.348-.116-.812.232-1.044l2.818-1.624c.406-.232.928-.116 1.16.29.116.232.116.522 0 .754z"/>
-                            </svg>
+                        <a href="https://yelp.to/QXoz5-TAWd" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full glass-card text-brand-pink flex items-center justify-center hover:bg-brand-pink hover:text-white transition-all transform hover:scale-110" title="Yelp">
+                            <span class="font-bold text-xl">Y</span>
                         </a>
                     </div>
                 </div>
             </div>
             
-            <!-- Removed the redundant two right columns -->
-            <div class="border-t border-pink-200 mt-16 pt-8 text-center text-gray-600 text-sm">
-                &copy; 2025 K&T Nails and Spa. All rights reserved.
+            <div class="border-t border-white/20 mt-16 pt-8 text-center text-gray-500 text-xs font-medium tracking-widest uppercase">
+                &copy; 2026 K&T Nails and Spa. Where Beauty <span class="text-brand-pink">Meets</span> Artistry.
             </div>
         </div>
-    </section>
+    </footer>
 
-    <!-- Contact Modal Popup (Remains the same) -->
-    <div id="contactModal" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4" onclick="closeContactModal(event)">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 transform transition-all" onclick="event.stopPropagation()">
+    <!-- Contact Modal Popup -->
+    <div id="contactModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-2xl z-[100] flex items-center justify-center p-4 transition-all" onclick="closeContactModal(event)">
+        <div class="glass-card max-w-md w-full p-10 transform scale-100 border-white/40 shadow-2xl" onclick="event.stopPropagation()">
             <div class="text-center">
-                <div class="mx-auto w-16 h-16 bg-brand-pink rounded-full flex items-center justify-center mb-4">
-                    <i data-lucide="phone" class="w-8 h-8 text-white"></i>
+                <div class="mx-auto w-20 h-20 bg-brand-pink/10 rounded-full flex items-center justify-center mb-6">
+                    <i data-lucide="phone" class="w-10 h-10 text-brand-pink"></i>
                 </div>
-                <h3 class="text-2xl font-serif font-bold mb-2">Call Us Today!</h3>
-                <p class="text-gray-600 mb-6">We're ready to serve you</p>
-                <a href="tel:7148206172" class="inline-block text-4xl font-bold text-brand-pink hover:text-brand-dark transition-colors mb-6">
+                <h3 class="text-3xl font-serif font-bold mb-3 text-gray-900 leading-tight">Expert Care Awaits</h3>
+                <p class="text-gray-600 mb-8 font-light">Call to refine your schedule</p>
+                <a href="tel:7148206172" class="inline-block text-4xl font-bold text-brand-pink hover:scale-105 transition-transform mb-8">
                     714-820-6172
                 </a>
-                <div class="space-y-2 text-sm text-gray-600 mb-6">
-                    <p><strong>Mon - Fri:</strong> 9:00 AM - 7:00 PM</p>
-                    <p><strong>Saturday:</strong> 9:00 AM - 6:00 PM</p>
-                    <p><strong>Sunday:</strong> Closed</p>
+                <div class="space-y-3 text-sm text-gray-700 mb-10 pb-8 border-b border-white/20">
+                    <p class="flex justify-between"><strong>Mon - Fri</strong> <span>9:00 AM - 7:00 PM</span></p>
+                    <p class="flex justify-between"><strong>Saturday</strong> <span>9:00 AM - 6:00 PM</span></p>
+                    <p class="flex justify-between font-bold text-brand-pink/60"><strong>Sunday</strong> <span>Closed</span></p>
                 </div>
-                <div class="flex gap-3">
-                    <a href="tel:7148206172" class="glow-button flex-1 px-6 py-3 bg-brand-pink text-white font-bold rounded-lg">
+                <div class="flex gap-4">
+                    <a href="tel:7148206172" class="glow-button flex-1 px-8 py-4 text-white font-bold rounded-2xl">
                         Call Now
                     </a>
-                    <button onclick="closeContactModal()" class="flex-1 px-6 py-3 bg-gray-200 text-gray-700 font-bold rounded-lg hover:bg-gray-300 transition-colors">
+                    <button onclick="closeContactModal()" class="flex-1 px-8 py-4 glass-card border-gray-300 text-gray-700 font-bold rounded-2xl hover:bg-gray-100 transition-colors">
                         Close
                     </button>
                 </div>
@@ -1180,12 +1291,12 @@
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 // If scrolled down
-                navbar.classList.add('py-3', 'shadow-lg', 'bg-pink-100');
-                navbar.classList.remove('py-4', 'bg-pink-50');
+                navbar.classList.add('py-2', 'shadow-2xl', 'bg-white/70');
+                navbar.classList.remove('py-4', 'navbar-glass');
             } else {
                 // At the top
-                navbar.classList.remove('py-3', 'shadow-lg', 'bg-pink-100');
-                navbar.classList.add('py-4', 'bg-pink-50');
+                navbar.classList.remove('py-2', 'shadow-2xl', 'bg-white/70');
+                navbar.classList.add('py-4', 'navbar-glass');
             }
         });
 
@@ -1193,31 +1304,31 @@
     </script>
 
     <!-- AI Chat Widget -->
-    <div id="ai-widget-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Lato', sans-serif;">
-      <div id="chat-window" style="display: none; width: 350px; height: 500px; background: white; border: 1px solid #fce7f3; border-radius: 16px; box-shadow: 0 10px 40px rgba(236, 72, 153, 0.2); flex-direction: column; overflow: hidden; margin-bottom: 10px;">
-        <div style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: white; padding: 16px; font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <i data-lucide="sparkles" style="width: 20px; height: 20px;"></i>
-            <span>K&T AI Stylist</span>
+    <div id="ai-widget-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 9999; font-family: 'Lato', sans-serif;">
+      <div id="chat-window" class="glass-card" style="display: none; width: 380px; height: 550px; background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; box-shadow: 0 15px 45px rgba(0,0,0,0.1); flex-direction: column; overflow: hidden; margin-bottom: 15px; border-bottom: 4px solid #ec4899;">
+        <div style="background: rgba(236, 72, 153, 0.8); backdrop-filter: blur(10px); color: white; padding: 20px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.2);">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
+            <span style="letter-spacing: 0.05em; text-transform: uppercase; font-size: 13px;">K&T AI Stylist</span>
           </div>
-          <span onclick="toggleChat()" style="cursor: pointer; font-size: 24px; line-height: 1; opacity: 0.9; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">&times;</span>
+          <span onclick="toggleChat()" style="cursor: pointer; font-size: 26px; line-height: 1; opacity: 0.8; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">&times;</span>
         </div>
-        <div id="chat-messages" style="flex: 1; padding: 16px; overflow-y: auto; background: #fafafa; font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
-          <div style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); padding: 12px; border-radius: 12px; border-left: 3px solid #ec4899; color: #831843; font-size: 13px;">
-            <strong>👋 Welcome to K&T Nails and Spa!</strong><br>
-            I'm your AI Stylist. Ask me about our services, pricing, hours, or get style recommendations!
+        <div id="chat-messages" style="flex: 1; padding: 20px; overflow-y: auto; background: transparent; font-size: 14px; display: flex; flex-direction: column; gap: 15px;">
+          <div style="background: rgba(255,255,255,0.4); backdrop-filter: blur(5px); padding: 15px; border-radius: 15px; border-left: 4px solid #ec4899; color: #1f2937; font-size: 13px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+            <strong class="text-brand-pink block mb-1">Welcome to Our Sanctuary</strong>
+            I'm your digital guide. How may I assist your journey to elegance today?
           </div>
         </div>
-        <div style="padding: 12px; border-top: 1px solid #fce7f3; display: flex; background: white;">
-          <input type="text" id="user-input" placeholder="Ask about services, hours, pricing..." style="flex: 1; padding: 10px 12px; border: 1px solid #fce7f3; border-radius: 8px; outline: none; font-size: 14px; transition: border-color 0.2s;" onkeypress="handleEnter(event)" onfocus="this.style.borderColor='#ec4899'" onblur="this.style.borderColor='#fce7f3'">
-          <button onclick="sendMessage()" style="margin-left: 8px; padding: 10px 16px; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(236, 72, 153, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(236, 72, 153, 0.3)'">
-            <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+        <div style="padding: 15px; border-top: 1px solid rgba(255,255,255,0.3); display: flex; background: rgba(255,255,255,0.2);">
+          <input type="text" id="user-input" placeholder="Inquire about services..." style="flex: 1; padding: 12px 15px; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.5); border-radius: 12px; outline: none; font-size: 14px; transition: all 0.3s;" onkeypress="handleEnter(event)" onfocus="this.style.background='white'; this.style.borderColor='#ec4899'" onblur="this.style.background='rgba(255,255,255,0.5)'; this.style.borderColor='rgba(255,255,255,0.5)'">
+          <button onclick="sendMessage()" class="glow-button" style="margin-left: 10px; padding: 12px 18px; color: white; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center;">
+            <i data-lucide="send" style="width: 18px; height: 18px;"></i>
           </button>
         </div>
       </div>
 
-      <button onclick="toggleChat()" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); color: white; border: none; font-size: 28px; cursor: pointer; box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4); display: flex; align-items: center; justify-content: center; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 25px rgba(236, 72, 153, 0.5)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 20px rgba(236, 72, 153, 0.4)'">
-        💬
+      <button onclick="toggleChat()" class="glow-button" style="width: 65px; height: 65px; border-radius: 20px; color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transform: rotate(-5deg); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);" onmouseover="this.style.transform='scale(1.1) rotate(0deg)'" onmouseout="this.style.transform='scale(1) rotate(-5deg)'">
+        <i data-lucide="sparkles" style="width: 28px; height: 28px;"></i>
       </button>
     </div>
 
